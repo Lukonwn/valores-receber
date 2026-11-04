@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <!-- Utmify Pixel -->
+    <script>
+      window.pixelId = "6ad6b8c8a8d3ee2bee813a7a";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script><script async="" defer="" src="js/pixel.js"></script>
+    <!-- Utmify UTM Tracker -->
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+        <!-- Preservação de UTMs e navegação (helper único) -->
+    <script src="js/utm-helper.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <title>Atendimento </title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231351B4'/><text x='16' y='22' text-anchor='middle' font-size='18' fill='white' font-family='Arial'>G</text></svg>" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.min.css">
+  <style>
+    :root {
+      --gov-blue-primary: #1351B4;
+      --gov-blue-secondary: #0F4DA8;
+      --gov-blue-light: #E8F4FD;
+      --gov-blue-dark: #0C326F;
+      --gov-green: #168821;
+      --gov-gray-bg: #F8F9FA;
+      --gov-gray-text: #333333;
+      --gov-gray-light: #E5E5E5;
+      --border-radius: 8px;
+      --transition: all 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--gov-gray-bg);
+      min-height: 100vh;
+      color: var(--gov-gray-text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== HEADER GOV.BR ===== */
+    .gov-header {
+      background: #fff;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border-bottom: 3px solid var(--gov-blue-primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .gov-header .logo img {
+      height: 38px;
+      width: auto;
+    }
+
+    .gov-header .btn-entrar {
+      background: var(--gov-blue-primary);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(19, 81, 180, 0.3);
+    }
+
+    .gov-header .btn-entrar:hover {
+      background: var(--gov-blue-secondary);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(19, 81, 180, 0.4);
+    }
+
+    .gov-header .btn-entrar i {
+      font-size: 14px;
+    }
+
+    /* ===== BANNER NATURAL (SEM CORTES) ===== */
+    .hero-banner {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      position: relative;
+      background: #fff;
+      overflow: hidden;
+      /* Nada de aspect-ratio nem height fixo — a imagem dita a altura */
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: auto; /* MANTÉM A PROPORÇÃO ORIGINAL SEM CORTES */
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Transição suave e natural entre banner e o conteúdo abaixo */
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(
+        to bottom,
+        rgba(248, 249, 250, 0) 0%,
+        rgba(248, 249, 250, 0.6) 60%,
+        rgba(248, 249, 250, 1) 100%
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ===== CONTEÚDO PRINCIPAL ===== */
+    .main-content {
+      flex: 1;
+      padding: 8px 16px 48px; /* Padding top reduzido para fluir naturalmente do banner */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+      margin-top: -30px; /* Sobe o conteúdo para "flutuar" sobre o degradê do banner */
+    }
+
+    .content-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      padding: 36px 28px 40px;
+      width: 100%;
+      max-width: 640px;
+      text-align: center;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+      position: relative;
+      z-index: 4;
+    }
+
+    .badge-oficial {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gov-blue-light);
+      color: var(--gov-blue-primary);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-bottom: 20px;
+      border: 1px solid #B8D4F0;
+    }
+
+    .badge-oficial i {
+      font-size: 14px;
+    }
+
+    .content-card h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0C326F;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .content-card .subtitle {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+
+    /* ===== BOTÃO PRINCIPAL ===== */
+    .btn-consultar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1351B4 0%, #0F4DA8 100%);
+      color: #fff;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(19, 81, 180, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 360px;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-consultar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-consultar:hover::before {
+      left: 100%;
+    }
+
+    .btn-consultar:hover {
+      background: linear-gradient(135deg, #1A6DD4 0%, #1351B4 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(19, 81, 180, 0.45);
+    }
+
+    .btn-consultar:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 14px rgba(19, 81, 180, 0.35);
+    }
+
+    .btn-consultar i {
+      font-size: 16px;
+    }
+
+    /* ===== CARDS DE DESTAQUE ===== */
+    .features-list {
+      width: 100%;
+      max-width: 640px;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .feature-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--gov-blue-primary);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--gov-blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon i {
+      font-size: 20px;
+      color: var(--gov-blue-primary);
+    }
+
+    .feature-text strong {
+      display: block;
+      font-size: 15px;
+      color: #0C326F;
+      margin-bottom: 2px;
+    }
+
+    .feature-text span {
+      font-size: 13px;
+      color: #777;
+    }
+
+    /* ===== FOOTER ===== */
+    .mini-footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.9);
+      background: var(--gov-blue-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .mini-footer img {
+      height: 20px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* ===== ANIMAÇÕES ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 480px) {
+      .gov-header {
+        padding: 10px 16px;
+      }
+      .gov-header .logo img {
+        height: 32px;
+      }
+      .gov-header .btn-entrar {
+        padding: 8px 14px;
+        font-size: 12px;
+      }
+      .content-card {
+        padding: 28px 20px 32px;
+        border-radius: 14px;
+      }
+      .content-card h1 {
+        font-size: 22px;
+      }
+      .content-card .subtitle {
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+      .main-content {
+        margin-top: -20px;
+        padding-bottom: 32px;
+      }
+      .hero-banner::after {
+        height: 40px;
+      }
+    }
+
+    /* Telas muito largas: limita a largura do banner para não ficar gigante */
+    @media (min-width: 1440px) {
+      .hero-banner {
+        max-width: 1280px;
+        margin: 24px auto 0;
+        border-radius: 20px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      }
+      .hero-banner::after {
+        border-radius: 0 0 20px 20px;
+      }
+      .main-content {
+        margin-top: -40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER GOV.BR ===== -->
+  <header class="gov-header">
+    <div class="logo">
+      <img src="images/govbr.png" alt="gov.br">
+    </div>
+    <a href="#" class="btn-entrar">
+      <i class="fas fa-user-circle"></i>
+      Entrar com gov.br
+    </a>
+  </header>
+
+  <!-- ===== BANNER PRINCIPAL (SEM CORTES) ===== -->
+  <section class="hero-banner">
+    <img src="images/Zgrr3tG.jpeg" alt="Programa de Restituição de Valores a Receber em Bets - Banco Central do Brasil e Gov.br" width="1512" height="600" loading="eager" fetchpriority="high">
+  </section>
+
+  <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+  <main class="main-content">
+
+    <div class="content-card">
+
+      <span class="badge-oficial">
+        <i class="fas fa-shield-alt"></i>
+        Serviço oficial de consulta
+      </span>
+
+      <h1>Consulte se você tem valores<br>a receber de instituições financeiras.</h1>
+
+      <p class="subtitle">
+        Faça uma consulta para verificar se existem registros elegíveis para análise pelo programa de valores a receber.
+      </p>
+
+      <a href="consulta.html" class="btn-consultar">
+        <i class="fas fa-search"></i>
+        Consultar agora
+        <i class="fas fa-arrow-right" style="font-size: 14px;"></i>
+      </a>
+
+    </div>
+
+    <!-- ===== CARDS DE DESTAQUE ===== -->
+    <div class="features-list">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <div class="feature-text">
+          <strong>Consulta segura</strong>
+          <span>Dados protegidos pelo governo</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="feature-text">
+          <strong>Processo digital</strong>
+          <span>Sem burocracia</span>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="feature-text">
+          <strong>Acompanhamento online</strong>
+          <span>Acesse quando quiser</span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="mini-footer">
+    <img src="images/logo.png" alt="Logo">
+    <span>Todo o conteúdo deste site está publicado sob a licença</span>
+  </footer>
+
+
+</body></html>
